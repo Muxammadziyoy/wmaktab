@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="">
+  <title>Log in - wMaktab</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="login" class="auth-body">
+
+  <div class="auth">
+    <aside class="auth-side" aria-hidden="true">
+      <a class="brand" href="index.html">
+        <span class="brand-mark"><svg viewBox="0 0 64 64"><path d="M12 22l8 22 8-14 8 14 8-22" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-name">wMaktab</span>
+      </a>
+      <div class="auth-copy">
+        <h2>Learning, organised.</h2>
+        <p>Grades, attendance, timetable and homework for the whole school, in one place.</p>
+      </div>
+      <div class="auth-orbs"><i></i><i></i><i></i></div>
+    </aside>
+
+    <main class="auth-main">
+      <form id="login-form" class="auth-card" autocomplete="on" novalidate>
+        <a class="back-link" href="index.html">&larr; Back to home</a>
+        <h1>Welcome back</h1>
+        <p class="muted">Log in with your school account.</p>
+
+        <div id="login-error" class="alert error" role="alert" hidden></div>
+
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required autofocus>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="pw-wrap">
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+            <button type="button" class="pw-toggle" id="pw-toggle" aria-label="Show password">Show</button>
+          </div>
+        </div>
+
+        <button id="login-btn" class="btn primary lg block" type="submit">Log in</button>
+
+        <div class="demo-box">
+          <p class="demo-title">Demo accounts <span class="muted">(click to fill)</span></p>
+          <div class="demo-list">
+            <button type="button" class="demo-chip" data-demo-user="student" data-demo-pass="student123"><b>Student</b><span>student / student123</span></button>
+            <button type="button" class="demo-chip" data-demo-user="teacher" data-demo-pass="teacher123"><b>Teacher</b><span>teacher / teacher123</span></button>
+            <button type="button" class="demo-chip" data-demo-user="admin" data-demo-pass="admin123"><b>Administrator</b><span>admin / admin123</span></button>
+          </div>
+          <p class="muted small">Demo data is fictional and saved only in this browser. <a href="#" id="reset-demo">Reset demo data</a></p>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <script src="js/backend.js"></script>
+  <script src="js/script.js"></script>
+<script>
+    document.getElementById("reset-demo").addEventListener("click",function(e){e.preventDefault();if(confirm("Delete all changes and restore the demo data?"))WM.reset();});
+    WM.isLoggedIn().then(function(ok){if(ok)location.replace("dashboard.html");});
+  </script>
+</body>
+</html>
